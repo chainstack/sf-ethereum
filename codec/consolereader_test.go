@@ -231,9 +231,10 @@ func testReaderConsoleReader(t *testing.T, lines chan string, closer func()) *Co
 	t.Helper()
 
 	l := &ConsoleReader{
-		lines: lines,
-		close: closer,
-		ctx:   &parseCtx{},
+		producer: NilProducer{},
+		lines:    lines,
+		close:    closer,
+		ctx:      &parseCtx{},
 	}
 
 	return l

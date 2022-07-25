@@ -16,6 +16,9 @@ package cli
 
 import (
 	"fmt"
+	"github.com/Shopify/sarama"
+	"github.com/klauspost/compress/zstd"
+	"github.com/streamingfast/sf-ethereum/tools"
 	"os"
 	"strings"
 	"time"
@@ -199,6 +202,27 @@ func nodeFactoryFunc(isMindreader bool, backupModuleFactories map[string]operato
 			blocksChanCapacity := viper.GetInt("mindreader-node-blocks-chan-capacity")
 			gs := dgrpc.NewServer(dgrpc.WithLogger(appLogger))
 
+			config := sarama.NewConfig()
+			config.Producer.MaxMessageBytes = 5 * 1_000_000
+			config.Producer.Return.Errors = true
+			config.Producer.Return.Successes = true
+			config.Producer.Compression = sarama.CompressionZSTD
+			config.Producer.CompressionLevel = int(zstd.SpeedDefault)
+
+			config.ClientID = viper.GetString("mindreader-node-kafka-client-id")
+			config.Version, err = sarama.ParseKafkaVersion(viper.GetString("mindreader-node-kafka-version"))
+			if err != nil {
+				appLogger.Warn("no kafka version provided")
+			}
+			if err = config.Validate(); err != nil {
+				return nil, fmt.Errorf("validating kafka client config: %w", err)
+			}
+
+			producer, err := sarama.NewAsyncProducer(viper.GetStringSlice("mindreader-node-kafka-addrs"), config)
+			if err != nil {
+				return nil, fmt.Errorf("initializing kafka producer: %w", err)
+			}
+
 			mindreaderPlugin, err := getMindreaderLogPlugin(
 				oneBlockStoreURL,
 				mergedBlockStoreURL,
@@ -215,6 +239,7 @@ func nodeFactoryFunc(isMindreader bool, backupModuleFactories map[string]operato
 				metricsAndReadinessManager,
 				tracker,
 				gs,
+				tools.NewKafkaProducer(viper.GetString("mindreader-node-kafka-topic"), appLogger, producer.Input()),
 				appLogger,
 			)
 			if err != nil {
@@ -227,15 +252,16 @@ func nodeFactoryFunc(isMindreader bool, backupModuleFactories map[string]operato
 			superviser.RegisterLogPlugin(trxPoolLogPlugin)
 			trxPoolLogPlugin.RegisterServices(gs)
 
-			return nodeMindReaderApp.New(&nodeMindReaderApp.Config{
+			app := nodeMindReaderApp.New(&nodeMindReaderApp.Config{
 				ManagerAPIAddress: managerAPIAddress,
 				GRPCAddr:          GRPCAddr,
 			}, &nodeMindReaderApp.Modules{
 				Operator:                   chainOperator,
 				MetricsAndReadinessManager: metricsAndReadinessManager,
 				GrpcServer:                 gs,
-			}, appLogger), nil
+			}, appLogger)
 
+			return tools.NewLauncherWrapper(app, appLogger, producer), nil
 		}
 	}
 }

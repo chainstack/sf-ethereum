@@ -30,9 +30,19 @@ import (
 	"go.uber.org/zap"
 )
 
+type Producer interface {
+	Send(block *pbcodec.Block)
+}
+
+type NilProducer struct{}
+
+func (n NilProducer) Send(block *pbcodec.Block) {}
+
 // ConsoleReader is what reads the `geth` output directly. It builds
 // up some LogEntry objects. See `LogReader to read those entries .
 type ConsoleReader struct {
+	producer Producer
+
 	lines chan string
 	close func()
 
@@ -40,12 +50,13 @@ type ConsoleReader struct {
 	done chan interface{}
 }
 
-func NewConsoleReader(lines chan string) (*ConsoleReader, error) {
+func NewConsoleReader(lines chan string, producer Producer) (*ConsoleReader, error) {
 	l := &ConsoleReader{
-		lines: lines,
-		close: func() {},
-		ctx:   &parseCtx{},
-		done:  make(chan interface{}),
+		producer: producer,
+		lines:    lines,
+		close:    func() {},
+		ctx:      &parseCtx{},
+		done:     make(chan interface{}),
 	}
 	return l, nil
 }
@@ -113,7 +124,10 @@ func (c *ConsoleReader) ReadBlock() (out *bstream.Block, err error) {
 		return nil, err
 	}
 
-	return BlockFromProto(v.(*pbcodec.Block))
+	pbBlock := v.(*pbcodec.Block)
+
+	c.producer.Send(pbBlock)
+	return BlockFromProto(pbBlock)
 }
 
 func (c ConsoleReader) ReadTransaction() (trace *pbcodec.TransactionTrace, err error) {

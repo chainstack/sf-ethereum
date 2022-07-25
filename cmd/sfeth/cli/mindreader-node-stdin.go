@@ -16,7 +16,6 @@ package cli
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream"
@@ -43,7 +42,7 @@ func init() {
 			mergeArchiveStoreURL := MustReplaceDataDir(sfDataDir, viper.GetString("common-blocks-store-url"))
 
 			consoleReaderFactory := func(lines chan string) (mindreader.ConsolerReader, error) {
-				r, err := codec.NewConsoleReader(lines)
+				r, err := codec.NewConsoleReader(lines, codec.NilProducer{})
 				if err != nil {
 					return nil, fmt.Errorf("initiating console reader: %w", err)
 				}

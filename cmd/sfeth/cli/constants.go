@@ -40,6 +40,10 @@ const (
 	FirehoseGRPCServingAddr      string = ":13042"
 	MetricsListenAddr            string = ":9102"
 
+	// kafka
+	MindreaderKafkaClientId string = "mindreader"
+	MindreaderKafkaTopic    string = "block-stream"
+
 	// Geth instance port definitions
 	MindreaderNodeP2PPort string = "30305"
 	MindreaderNodeRPCPort string = "8547"

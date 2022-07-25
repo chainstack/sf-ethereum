@@ -15,6 +15,7 @@
 package cli
 
 import (
+	"github.com/Shopify/sarama"
 	"math"
 	"strings"
 	"time"
@@ -57,6 +58,10 @@ func registerMindreaderNodeFlags(cmd *cobra.Command) error {
 	cmd.Flags().String("mindreader-node-oneblock-suffix", "default", "Unique identifier for that mindreader, so that it can produce 'oneblock files' in the same store as another instance without competing for writes.")
 	cmd.Flags().Duration("mindreader-node-wait-upload-complete-on-shutdown", 30*time.Second, "When the mindreader is shutting down, it will wait up to that amount of time for the archiver to finish uploading the blocks before leaving anyway")
 	cmd.Flags().Duration("mindreader-node-merge-threshold-block-age", time.Duration(math.MaxInt64), "When processing blocks with a blocktime older than this threshold, they will be automatically merged")
+	cmd.Flags().String("mindreader-node-kafka-client-id", MindreaderKafkaClientId, "A user-provided string sent with every request to the brokers for logging, debugging, and auditing purposes. Defaults to \"mindreader\", but you should probably set it to something specific to your application.")
+	cmd.Flags().String("mindreader-node-kafka-version", sarama.MaxVersion.String(), "Kafka version %d.%d.%d")
+	cmd.Flags().StringSlice("mindreader-node-kafka-addrs", []string{"localhost:9092"}, "Kafka addresses")
+	cmd.Flags().String("mindreader-node-kafka-topic", MindreaderKafkaTopic, "The Kafka topic for messages")
 
 	return nil
 }
@@ -77,6 +82,7 @@ func getMindreaderLogPlugin(
 	metricsAndReadinessManager *nodeManager.MetricsAndReadinessManager,
 	tracker *bstream.Tracker,
 	gs *grpc.Server,
+	producer codec.Producer,
 	appLogger *zap.Logger) (*mindreader.MindReaderPlugin, error) {
 
 	// It's important that this call goes prior running gRPC server since it's doing
@@ -84,7 +90,7 @@ func getMindreaderLogPlugin(
 	blockStreamServer := blockstream.NewServer(gs, blockstream.ServerOptionWithLogger(appLogger))
 
 	consoleReaderFactory := func(lines chan string) (mindreader.ConsolerReader, error) {
-		return codec.NewConsoleReader(lines)
+		return codec.NewConsoleReader(lines, producer)
 	}
 
 	logPlugin, err := mindreader.NewMindReaderPlugin(
