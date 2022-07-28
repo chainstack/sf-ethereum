@@ -4,10 +4,10 @@ import (
 	"encoding/hex"
 	"fmt"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
+	pbtransform "github.com/chainstack/sf-ethereum/pb/sf/ethereum/transform/v1"
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/bstream/transform"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
-	pbtransform "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/transform/v1"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"

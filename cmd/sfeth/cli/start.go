@@ -19,6 +19,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	_ "github.com/chainstack/sf-ethereum/codec"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream"
@@ -26,7 +27,6 @@ import (
 	"github.com/streamingfast/dgrpc"
 	"github.com/streamingfast/dlauncher/launcher"
 	pbblockmeta "github.com/streamingfast/pbgo/sf/blockmeta/v1"
-	_ "github.com/streamingfast/sf-ethereum/codec"
 	"go.uber.org/zap"
 )
 

@@ -6,7 +6,7 @@ import (
 
 	"github.com/streamingfast/dstore"
 
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

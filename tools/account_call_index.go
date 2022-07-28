@@ -19,14 +19,14 @@ import (
 	"fmt"
 	"strconv"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
+	"github.com/chainstack/sf-ethereum/transform"
 	"github.com/spf13/cobra"
 	"github.com/streamingfast/bstream"
 	bstransform "github.com/streamingfast/bstream/transform"
 	"github.com/streamingfast/dstore"
 	"github.com/streamingfast/firehose"
 	pbfirehose "github.com/streamingfast/pbgo/sf/firehose/v1"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
-	"github.com/streamingfast/sf-ethereum/transform"
 )
 
 var generateCalltoIdxCmd = &cobra.Command{

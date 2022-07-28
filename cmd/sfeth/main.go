@@ -17,8 +17,8 @@ package main
 import (
 	"time"
 
+	"github.com/chainstack/sf-ethereum/cmd/sfeth/cli"
 	"github.com/streamingfast/node-manager/operator"
-	"github.com/streamingfast/sf-ethereum/cmd/sfeth/cli"
 	"github.com/streamingfast/snapshotter"
 )
 

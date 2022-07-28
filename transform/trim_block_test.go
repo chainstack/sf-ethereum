@@ -3,9 +3,9 @@ package transform
 import (
 	"testing"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
+	pbtransform "github.com/chainstack/sf-ethereum/pb/sf/ethereum/transform/v1"
 	"github.com/streamingfast/bstream/transform"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
-	pbtransform "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/transform/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/anypb"

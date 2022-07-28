@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 )
 
 type Hash []byte

@@ -1,4 +1,4 @@
-module github.com/streamingfast/sf-ethereum
+module github.com/chainstack/sf-ethereum
 
 go 1.16
 

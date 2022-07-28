@@ -17,8 +17,8 @@ package filtering
 import (
 	"bytes"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/streamingfast/eth-go"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 )
 
 type trxHashFilter struct {

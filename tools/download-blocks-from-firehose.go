@@ -6,10 +6,10 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/chainstack/sf-ethereum/codec"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/spf13/cobra"
 	"github.com/streamingfast/bstream"
-	"github.com/streamingfast/sf-ethereum/codec"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	sftools "github.com/streamingfast/sf-tools"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"

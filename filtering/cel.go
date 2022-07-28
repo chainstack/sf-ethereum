@@ -18,11 +18,11 @@ import (
 	"fmt"
 	"strings"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/checker/decls"
 	"github.com/google/cel-go/common/types"
 	"github.com/google/cel-go/interpreter"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"go.uber.org/zap"
 )
 

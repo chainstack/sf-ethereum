@@ -3,9 +3,9 @@ package transform
 import (
 	"encoding/hex"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/streamingfast/bstream/transform"
 	"github.com/streamingfast/dstore"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 )
 
 type LogIndexer interface {

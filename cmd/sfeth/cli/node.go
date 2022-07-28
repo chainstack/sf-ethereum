@@ -17,12 +17,15 @@ package cli
 import (
 	"fmt"
 	"github.com/Shopify/sarama"
+	"github.com/chainstack/sf-ethereum/tools"
 	"github.com/klauspost/compress/zstd"
-	"github.com/streamingfast/sf-ethereum/tools"
 	"os"
 	"strings"
 	"time"
 
+	nodemanager "github.com/chainstack/sf-ethereum/node-manager"
+	"github.com/chainstack/sf-ethereum/node-manager/geth"
+	"github.com/chainstack/sf-ethereum/node-manager/openeth"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream"
@@ -34,9 +37,6 @@ import (
 	nodeMindReaderApp "github.com/streamingfast/node-manager/app/node_mindreader"
 	"github.com/streamingfast/node-manager/metrics"
 	"github.com/streamingfast/node-manager/operator"
-	nodemanager "github.com/streamingfast/sf-ethereum/node-manager"
-	"github.com/streamingfast/sf-ethereum/node-manager/geth"
-	"github.com/streamingfast/sf-ethereum/node-manager/openeth"
 	"go.uber.org/zap"
 )
 

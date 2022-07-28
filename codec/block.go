@@ -16,9 +16,9 @@ package codec
 
 import (
 	"fmt"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/streamingfast/bstream"
 	pbbstream "github.com/streamingfast/pbgo/sf/bstream/v1"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"google.golang.org/protobuf/proto"
 )
 

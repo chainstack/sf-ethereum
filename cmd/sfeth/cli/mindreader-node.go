@@ -20,6 +20,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/chainstack/sf-ethereum/codec"
 	"github.com/spf13/cobra"
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/bstream/blockstream"
@@ -27,7 +28,6 @@ import (
 	nodeManager "github.com/streamingfast/node-manager"
 	"github.com/streamingfast/node-manager/mindreader"
 	"github.com/streamingfast/node-manager/operator"
-	"github.com/streamingfast/sf-ethereum/codec"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )

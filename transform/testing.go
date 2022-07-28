@@ -10,12 +10,12 @@ import (
 
 	"github.com/streamingfast/eth-go"
 
+	_ "github.com/chainstack/sf-ethereum/codec"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/golang/protobuf/proto"
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/jsonpb"
 	pbbstream "github.com/streamingfast/pbgo/sf/bstream/v1"
-	_ "github.com/streamingfast/sf-ethereum/codec"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/stretchr/testify/require"
 )
 

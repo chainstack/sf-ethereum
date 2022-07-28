@@ -25,10 +25,10 @@ import (
 
 	"go.uber.org/zap"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/spf13/cobra"
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/dstore"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 )
 
 var printCmd = &cobra.Command{

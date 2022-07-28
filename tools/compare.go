@@ -21,11 +21,11 @@ import (
 	"strconv"
 	"sync"
 
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/google/go-cmp/cmp"
 	"github.com/spf13/cobra"
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/dstore"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 )
 
 var compareBlocksCmd = &cobra.Command{

@@ -24,6 +24,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/chainstack/sf-ethereum/codec"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/golang/protobuf/ptypes"
 	tspb "github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/mitchellh/go-testing-interface"
@@ -32,8 +34,6 @@ import (
 	"github.com/streamingfast/jsonpb"
 	"github.com/streamingfast/logging"
 	pbbstream "github.com/streamingfast/pbgo/sf/bstream/v1"
-	"github.com/streamingfast/sf-ethereum/codec"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 )

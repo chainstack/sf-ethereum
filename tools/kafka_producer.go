@@ -2,8 +2,8 @@ package tools
 
 import (
 	"github.com/Shopify/sarama"
+	pbcodec "github.com/chainstack/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"github.com/golang/protobuf/proto"
-	pbcodec "github.com/streamingfast/sf-ethereum/pb/sf/ethereum/codec/v1"
 	"go.uber.org/zap"
 	"time"
 )

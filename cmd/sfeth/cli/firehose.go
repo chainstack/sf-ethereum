@@ -21,6 +21,7 @@ import (
 	"strings"
 	"time"
 
+	sftransform "github.com/chainstack/sf-ethereum/transform"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream"
@@ -33,7 +34,6 @@ import (
 	"github.com/streamingfast/firehose"
 	firehoseApp "github.com/streamingfast/firehose/app/firehose"
 	"github.com/streamingfast/logging"
-	sftransform "github.com/streamingfast/sf-ethereum/transform"
 	"go.uber.org/zap"
 )
 
